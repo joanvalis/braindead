@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="icon" href="favicon.ico" />
+
+	<title>Braindead Comedy</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
+</head>
+
+<body class="is-preload">
+	<!-- Wrapper -->
+	<div id="wrapper" class="divided">
+		<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in"
+			id="first">
+			<div class="content">
+				<h2>Braindead Comedy</h2>
+				<p>Come see a bunch of comedians giving their all to make you laugh.<br><br>
+					<i>Date:</i> Wed 4.9.2019 19:00 (doors 18:30)<br>
+					<i>Language:</i> English<br>
+					<i>Duration:</i> ~90 min (incl. break)<br>
+					<i>Location:</i> Bar Loose in the basement (Annankatu 21, 00100 Helsinki) <br><br>
+					Mailing list for future shows <a
+						href="https://docs.google.com/forms/d/16eIgLQmXnf1ytcrwUD30uSDYE7-CYilgKS8HC9ZFo28/">here</a>
+
+				</p>
+
+				<table class="table" style="width: 650px">
+					<tbody>
+						<tr>
+							<td>Regular tickets</td>
+							<td>
+								<div style="width: 200px">
+									<input id="input1" type="number" class="number" placeholder="0" min="0" max="100" step="1" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Student tickets (15% off)</td>
+							<td>
+								<div style="width: 200px">
+									<input id="input2" type="number" class="number" placeholder="0" min="0" max="100" step="1" />
+							</td>
+			</div>
+			</tr>
+			<tr>
+				<td>Group tickets (20% off, min 5)</td>
+				<td>
+
+					<div style="width: 200px">
+						<input id="input3" type="number" class="number" placeholder="0" min="5" max="100" step="1" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Total amount: </b><span id="mtotal"></span></td>
+				<td></td>
+			</tr>
+			</tbody>
+			</table>
+			<button type="button" class="btn btn-primary" id="checkout-button-sku_Fe5t80kf4TpxOv"
+			role="link">Buy</button>
+			<button type="button"  id="btnClear" class="btn btn-light">Clear</button>
+			<div id="error-message"></div>
+
+	</div>
+	<div class="image"> <img src="images/banner.jpg" alt="" />
+	</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="wrapper style1 align-center">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="https://www.facebook.com/laughsinki/" class="icon brands style2 fa-facebook-f"><span
+							class="label">Facebook</span></a></li>
+				<li><a href="mailto:joanvalisgigs@gmail.com" class="icon style2 fa-envelope"><span
+							class="label">Email</span></a></li>
+			</ul>
+			<p>&copy; Joan Valis 2019, design: <a href="https://html5up.net">HTML5 UP</a></p>
+		</div>
+	</footer>
+
+	</div>
+
+	<!-- Scripts of html5up-->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<!-- Scripts of bootstrap-spinner-->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script src="assets/js/bootstrap-input-spinner.js"></script>
+	<script>
+		$("input[type='number']").inputSpinner();
+
+		var $fees = $("input[type='number']").change(function () {
+			var total = 0;
+			//iterate through all the fee elements and find the total
+			$fees.each(function () {
+				var input = this.value;
+				if ($(this).attr("id") == "input1") {
+					input *= 10;
+				}
+				else if ($(this).attr("id") == "input2") {
+					input *= 8.5;
+				}
+				else {
+					input *= 8;
+				}
+				total += (parseFloat($.trim(input)) || 0)
+			})
+			$("#mtotal").text(total.toFixed(2)+ '€');
+		});
+
+		$('#btnClear').click(function(){	
+			/*alert("Your book is overdue.");	*//*To check it enters (it does)*/
+				/*Clear all input type="text" box*/
+				$(".number").val('');
+				/*Clear textarea using id */
+				$( "#mtotal" ).text('');
+								
+		});
+	</script>
+		<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
+		<!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
+
+<script>
+  var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
+
+  var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 1}],
+
+      // Do not rely on the redirect to the successUrl for fulfilling
+      // purchases, customers may not always reach the success_url after
+      // a successful payment.
+      // Instead use one of the strategies described in
+      // https://stripe.com/docs/payments/checkout/fulfillment
+      successUrl: 'https://joanvalis.github.io/success',
+      cancelUrl: 'https://joanvalis.github.io/canceled',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
+</body>
+
+</html>
