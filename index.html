@@ -10,10 +10,14 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<!-- Load Stripe.js on your website. -->
+	<script src="https://js.stripe.com/v3"></script>
 	<!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
+	
 </head>
 
 <body class="is-preload">
+
 	<!-- Wrapper -->
 	<div id="wrapper" class="divided">
 		<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in"
@@ -33,7 +37,7 @@
 				<table class="table" style="width: 650px">
 					<tbody>
 						<tr>
-							<td>Regular tickets</td>
+							<td>Regular tickets (10€)</td>
 							<td>
 								<div style="width: 200px">
 									<input id="input1" type="number" class="number" placeholder="0" min="0" max="100" step="1" />
@@ -140,37 +144,30 @@
 		});
 	</script>
 		<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
-		<!-- Load Stripe.js on your website. -->
-<script src="https://js.stripe.com/v3"></script>
 
 <script>
-  var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
+	var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
+	var regular = $('#input1').val(); //ALT: document.getElementById('input1').value 
+	var student = $('#input2').val();
+	var group = $('#input3').val();
 
-  var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
-  checkoutButton.addEventListener('click', function () {
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    stripe.redirectToCheckout({
-      items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 1}],
-
-      // Do not rely on the redirect to the successUrl for fulfilling
-      // purchases, customers may not always reach the success_url after
-      // a successful payment.
-      // Instead use one of the strategies described in
-      // https://stripe.com/docs/payments/checkout/fulfillment
-      successUrl: 'https://joanvalis.github.io/success',
-      cancelUrl: 'https://joanvalis.github.io/canceled',
-    })
-    .then(function (result) {
-      if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer.
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-  });
-</script>
+	var checkoutButton = document.getElementById('checkout-button-sku_Fe6S60Vz0kU0YV');
+	checkoutButton.addEventListener('click', function () {
+		stripe.redirectToCheckout({
+		items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: regular}, 
+				{sku: 'sku_Fe6S60Vz0kU0YV', quantity: student},
+				{sku: 'sku_Fe6TRh1LD7I6op', quantity: group}],
+		successUrl: 'https://joanvalis.github.io/braindead/success.html',
+		cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
+		})
+		.then(function (result) {
+		if (result.error) {			
+			var displayError = document.getElementById('error-message');
+			displayError.textContent = result.error.message;
+		}
+		});
+	});
+	</script>
 </body>
 
 </html>
