@@ -147,9 +147,9 @@
 
 <script>
 	var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
-	var regular = $('#input1').val(); //ALT: document.getElementById('input1').value 
-	var student = $('#input2').val();
-	var group = $('#input3').val();
+	var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
+	var student = parseInt($('#input2').val());
+	var group   = parseInt($('#input3').val());
 
 	var checkoutButton = document.getElementById('checkout-button-sku_Fe6S60Vz0kU0YV');
 	checkoutButton.addEventListener('click', function () {
