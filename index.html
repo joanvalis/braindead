@@ -70,6 +70,7 @@
 			<button type="button" class="btn btn-primary" id="checkout-button-sku_Fe5t80kf4TpxOv"
 			role="link">Buy</button>
 			<button type="button"  id="btnClear" class="btn btn-light">Clear</button>
+			<button type="button"  id="btnTest" class="btn btn-light">Test</button>
 			<div id="error-message"></div>
 
 	</div>
@@ -136,27 +137,43 @@
 
 		$('#btnClear').click(function(){	
 			/*alert("Your book is overdue.");	*//*To check it enters (it does)*/
-				/*Clear all input type="text" box*/
-				$(".number").val('');
-				/*Clear textarea using id */
-				$( "#mtotal" ).text('');
+			/*Clear all input type="text" box*/
+			$(".number").val('');
+			/*Clear textarea using id */
+			$( "#mtotal" ).text('');
+								
+		});
+		$('#btnTest').click(function(){	
+			var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
+			var student = parseInt($('#input2').val());
+			var group   = parseInt($('#input3').val());
+			alert(regular +" "+student+" "+group);
+			/*alert("Your book is overdue.");	*//*To check it enters (it does)*/
+				// /*Clear all input type="text" box*/
+				// $(".number").val('');
+				// /*Clear textarea using id */
+				// $( "#mtotal" ).text('');
 								
 		});
 	</script>
 		<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
 
 <script>
-	var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
-	var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
-	var student = parseInt($('#input2').val());
-	var group   = parseInt($('#input3').val());
-
+	//Production
+	// var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
+	//Testing
+	var stripe = Stripe('pk_test_y9SWrPjd9ormdQk4EmIMZHX8');
 	var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
 	checkoutButton.addEventListener('click', function () {
 		stripe.redirectToCheckout({
-		items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: regular}, 
-				{sku: 'sku_Fe6S60Vz0kU0YV', quantity: student},
-				{sku: 'sku_Fe6TRh1LD7I6op', quantity: group}],
+//Production
+		// items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 2}, 
+		// 		{sku: 'sku_Fe6S60Vz0kU0YV', quantity: 2},
+		// 		{sku: 'sku_Fe6TRh1LD7I6op', quantity: 5}],
+//Testing
+		items: [{sku: 'sku_F7qaiXVy2h0tBs', quantity: 2}, 
+				{sku: 'sku_FeUvhzVhBdMFMY', quantity: 2},
+				{sku: 'sku_Ff0Kkaf4hYkKYo', quantity: 5}],
 		successUrl: 'https://joanvalis.github.io/braindead/success.html',
 		cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
 		})
@@ -166,7 +183,7 @@
 			displayError.textContent = result.error.message;
 		}
 		});
-	});
+	}, { passive: true });
 	</script>
 </body>
 
