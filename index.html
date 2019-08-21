@@ -147,13 +147,7 @@
 			var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
 			var student = parseInt($('#input2').val());
 			var group   = parseInt($('#input3').val());
-			alert(regular +" "+student+" "+group);
-			/*alert("Your book is overdue.");	*//*To check it enters (it does)*/
-				// /*Clear all input type="text" box*/
-				// $(".number").val('');
-				// /*Clear textarea using id */
-				// $( "#mtotal" ).text('');
-								
+			alert(regular +" "+typeof regular+ " " + student+" "+typeof student+ " " + group + " " + typeof group); //NaN is 0, number otherwise		
 		});
 	</script>
 		<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
@@ -165,15 +159,27 @@
 	var stripe = Stripe('pk_test_y9SWrPjd9ormdQk4EmIMZHX8');
 	var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
 	checkoutButton.addEventListener('click', function () {
+		var items = [];
+		var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
+		var student = parseInt($('#input2').val());
+		var group   = parseInt($('#input3').val());
+		if (regular != NaN){
+			items.push({sku: 'sku_F7qaiXVy2h0tBs', quantity: regular});
+		}
+		if(student != NaN){
+			items.push({sku: 'sku_FeUvhzVhBdMFMY', quantity: student});
+		}
+		if(group != NaN){
+			items.push({sku: 'sku_Ff0Kkaf4hYkKYo', quantity: group});
+		}
+		alert(items[0].sku + " " + items[1].quantity + " " + items[2].quantity);
 		stripe.redirectToCheckout({
 //Production
 		// items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 2}, 
 		// 		{sku: 'sku_Fe6S60Vz0kU0YV', quantity: 2},
 		// 		{sku: 'sku_Fe6TRh1LD7I6op', quantity: 5}],
 //Testing
-		items: [{sku: 'sku_F7qaiXVy2h0tBs', quantity: 2}, 
-				{sku: 'sku_FeUvhzVhBdMFMY', quantity: 2},
-				{sku: 'sku_Ff0Kkaf4hYkKYo', quantity: 5}],
+		items,
 		successUrl: 'https://joanvalis.github.io/braindead/success.html',
 		cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
 		})
