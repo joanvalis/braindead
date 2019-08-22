@@ -10,6 +10,18 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+	#prices {
+		width: 23em;
+		}
+		/* Get more exquisite with this example: https://www.w3schools.com/Css/css_table.asp , tried #prices div {width: 8em} but didn't work the same as inputBox below*/
+	/* #prices td{ 
+		width: 9em;
+	} */
+	#inputBox{
+		width: 8em;
+	}
+	</style>
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
 	<!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
@@ -35,12 +47,12 @@
 
 				</p>
 
-				<table class="table">
+				<table class="table" id="prices">
 					<tbody>
 						<tr>
 							<td>Regular tickets (10€)</td>
 							<td>
-								<div style="width: 120px">
+								<div id="inputBox">
 									<input id="input1" type="number" class="numbera" placeholder="0" min="0" max="100"
 										step="1" />
 								</div>
@@ -49,17 +61,17 @@
 						<tr>
 							<td>Student tickets (15% off)</td>
 							<td>
-								<div style="width: 120px">
+								<div id="inputBox">
 									<input id="input2" type="number" class="numbera" placeholder="0" min="0" max="100"
 										step="1" />
+								</div>
 							</td>
-			</div>
 			</tr>
 			<tr>
 				<td>Group tickets (20% off, min 5)</td>
 				<td>
 
-					<div style="width: 120px">
+					<div id="inputBox">
 						<input id="input3" type="number" class="numbera" placeholder="0" min="5" max="100" step="1" />
 					</div>
 				</td>
@@ -100,12 +112,12 @@
 						href="https://docs.google.com/forms/d/16eIgLQmXnf1ytcrwUD30uSDYE7-CYilgKS8HC9ZFo28/">here</a>
 				</p>
 
-				<table class="table">
+				<table class="table"  id="prices">
 					<tbody>
 						<tr>
 							<td>Regular tickets (10€)</td>
 							<td>
-								<div style="width: 120px">
+								<div id="inputBox">
 									<input id="input1b" type="number" class="numberb" placeholder="0" min="0" max="100"
 										step="1" />
 								</div>
@@ -114,17 +126,17 @@
 						<tr>
 							<td>Student tickets (15% off)</td>
 							<td>
-								<div style="width: 120px">
+								<div id="inputBox">
 									<input id="input2b" type="number" class="numberb" placeholder="0" min="0" max="100"
 										step="1" />
+								</div>
 							</td>
-			</div>
 			</tr>
 			<tr>
 				<td>Group tickets (20% off, min 5)</td>
 				<td>
 
-					<div style="width: 120px">
+					<div id="inputBox">
 						<input id="input3b" type="number" class="numberb" placeholder="0" min="5" max="100" step="1" />
 					</div>
 				</td>
