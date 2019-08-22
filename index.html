@@ -147,41 +147,37 @@
 			var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
 			var student = parseInt($('#input2').val());
 			var group   = parseInt($('#input3').val());
-			alert(regular +" "+typeof regular+ " " + student+" "+typeof student+ " " + group + " " + typeof group); //NaN is 0, number otherwise		
+			alert(regular +" "+typeof regular+ " " + student+" "+typeof student+ " " + group + " " + typeof group +"\n" + !isNaN(regular) + " " + !isNaN(student) + " " + !isNaN(group)); 
+	      //NaN number NaN number 7 number 
+    	  //true true true
 		});
 	</script>
 		<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
 
 <script>
 	//Production
-	// var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
-	//Testing
-	var stripe = Stripe('pk_test_y9SWrPjd9ormdQk4EmIMZHX8');
+	var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
 	var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
 	checkoutButton.addEventListener('click', function () {
 		var items = [];
 		var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
 		var student = parseInt($('#input2').val());
 		var group   = parseInt($('#input3').val());
-		if (regular != NaN){
-			items.push({sku: 'sku_F7qaiXVy2h0tBs', quantity: regular});
+
+		if (!isNaN(regular)){
+			items.push({sku: 'sku_Fe5t80kf4TpxOv', quantity: regular});
 		}
-		if(student != NaN){
-			items.push({sku: 'sku_FeUvhzVhBdMFMY', quantity: student});
+		if(!isNaN(student)){
+			items.push({sku: 'sku_Fe6S60Vz0kU0YV', quantity: student});
 		}
-		if(group != NaN){
-			items.push({sku: 'sku_Ff0Kkaf4hYkKYo', quantity: group});
+		if(!isNaN(group)){
+			items.push({sku: 'sku_Fe6TRh1LD7I6op', quantity: group});
 		}
-		alert(items[0].sku + " " + items[1].quantity + " " + items[2].quantity);
+		
 		stripe.redirectToCheckout({
-//Production
-		// items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 2}, 
-		// 		{sku: 'sku_Fe6S60Vz0kU0YV', quantity: 2},
-		// 		{sku: 'sku_Fe6TRh1LD7I6op', quantity: 5}],
-//Testing
-		items,
-		successUrl: 'https://joanvalis.github.io/braindead/success.html',
-		cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
+			items,
+			successUrl: 'https://joanvalis.github.io/braindead/success.html',
+			cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
 		})
 		.then(function (result) {
 		if (result.error) {			
@@ -190,6 +186,42 @@
 		}
 		});
 	}, { passive: true });
+
+// 	//Testing
+// 	var stripeTest = Stripe('pk_test_y9SWrPjd9ormdQk4EmIMZHX8');
+// 	var checkoutButton = document.getElementById('checkout-button-sapiano');
+// 	checkoutButton.addEventListener('click', function () {
+// 		var items = [];
+// 		var regular = parseInt($('#input1b').val()); //ALT: document.getElementById('input1').value 
+// 		var student = parseInt($('#input2b').val());
+// 		var group   = parseInt($('#input3b').val());
+// 		//Testing
+// 		if (!isNaN(regular)){
+// 			items.push({sku: 'sku_F7qaiXVy2h0tBs', quantity: regular});
+// 		}
+// 		if(!isNaN(student)){
+// 			items.push({sku: 'sku_FeUvhzVhBdMFMY', quantity: student});
+// 		}
+// 		if(!isNaN(group)){
+// 			items.push({sku: 'sku_Ff0Kkaf4hYkKYo', quantity: group});
+// 		}
+// 		stripeTest.redirectToCheckout({
+// //Production
+// 		// items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 2}, 
+// 		// 		{sku: 'sku_Fe6S60Vz0kU0YV', quantity: 2},
+// 		// 		{sku: 'sku_Fe6TRh1LD7I6op', quantity: 5}],
+// //Testing
+// 		items,
+// 		successUrl: 'https://joanvalis.github.io/braindead/success.html',
+// 		cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
+// 		})
+// 		.then(function (result) {
+// 		if (result.error) {			
+// 			var displayError = document.getElementById('error-message');
+// 			displayError.textContent = result.error.message;
+// 		}
+// 		});
+// 	}, { passive: true });
 	</script>
 </body>
 
