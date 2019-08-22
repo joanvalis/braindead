@@ -13,13 +13,14 @@
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
 	<!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
-	
+
 </head>
 
 <body class="is-preload">
 
 	<!-- Wrapper -->
 	<div id="wrapper" class="divided">
+		<!-- Braindead -->
 		<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in"
 			id="first">
 			<div class="content">
@@ -40,7 +41,8 @@
 							<td>Regular tickets (10€)</td>
 							<td>
 								<div style="width: 200px">
-									<input id="input1" type="number" class="number" placeholder="0" min="0" max="100" step="1" />
+									<input id="input1" type="number" class="numbera" placeholder="0" min="0" max="100"
+										step="1" />
 								</div>
 							</td>
 						</tr>
@@ -48,7 +50,8 @@
 							<td>Student tickets (15% off)</td>
 							<td>
 								<div style="width: 200px">
-									<input id="input2" type="number" class="number" placeholder="0" min="0" max="100" step="1" />
+									<input id="input2" type="number" class="numbera" placeholder="0" min="0" max="100"
+										step="1" />
 							</td>
 			</div>
 			</tr>
@@ -57,7 +60,7 @@
 				<td>
 
 					<div style="width: 200px">
-						<input id="input3" type="number" class="number" placeholder="0" min="5" max="100" step="1" />
+						<input id="input3" type="number" class="numbera" placeholder="0" min="5" max="100" step="1" />
 					</div>
 				</td>
 			</tr>
@@ -68,15 +71,83 @@
 			</tbody>
 			</table>
 			<button type="button" class="btn btn-primary" id="checkout-button-sku_Fe5t80kf4TpxOv"
-			role="link">Buy</button>
-			<button type="button"  id="btnClear" class="btn btn-light">Clear</button>
-			<button type="button"  id="btnTest" class="btn btn-light">Test</button>
+				role="link">Buy</button>
+			<button type="button" id="btnClear" class="btn btn-light">Clear</button>
+			<!-- <button type="button" id="btnTest" class="btn btn-light">Test</button> -->
 			<div id="error-message"></div>
 
-	</div>
-	<div class="image"> <img src="images/banner.jpg" alt="" />
+			</div>
+			<div class="image"> <img src="images/banner.jpg" alt="" />
 	</div>
 	</section>
+
+	<!-- Sapiano's -->
+		<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in" id="sapiano">
+			<div class="content">
+				<h2>Peter Sapiano's soolo</h2>
+				<p>Kanadasta Suomeen on stand-up komedia -soolo, jossa Peter Sapiano kertoo hauskasta elämänkokemuksestaan. Jos luulet elämäsi olevan hullua, tämä on show sinulle.
+						Se on show mustasta lampaasta, elämästä Kanadassa, Suomessa ja muualla, ja se viihdyttää erilaisesti.
+						Peterillä on kova komediatyyli, hän on energinen ja yksi parhaimmista tarinankertojista. Kaiken lisäksi saat mahdollisuuden kuulla kanadalaisen puhuvan 
+						suomeksi Oulun murteella.
+						Peter on nähty televisiossa Naurun Tasapainossa, Nelonen Stand upissa ja Poliisi TV:ssä.
+					
+					<br><br>
+					<i>Date:</i> Wed 3.9.2019 20:30 (doors 20:00)<br>
+					<i>Language:</i> Finnish<br>
+					<i>Duration:</i> ~60 min<br>
+					<i>Location:</i> Bar Loose in the basement (Annankatu 21, 00100 Helsinki) <br><br>
+					Mailing list for future comedy shows <a
+						href="https://docs.google.com/forms/d/16eIgLQmXnf1ytcrwUD30uSDYE7-CYilgKS8HC9ZFo28/">here</a>
+				</p>
+
+				<table class="table" style="width: 650px">
+					<tbody>
+						<tr>
+							<td>Regular tickets (10€)</td>
+							<td>
+								<div style="width: 200px">
+									<input id="input1b" type="number" class="numberb" placeholder="0" min="0" max="100"
+										step="1" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Student tickets (15% off)</td>
+							<td>
+								<div style="width: 200px">
+									<input id="input2b" type="number" class="numberb" placeholder="0" min="0" max="100"
+										step="1" />
+							</td>
+			</div>
+			</tr>
+			<tr>
+				<td>Group tickets (20% off, min 5)</td>
+				<td>
+
+					<div style="width: 200px">
+						<input id="input3b" type="number" class="numberb" placeholder="0" min="5" max="100" step="1" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Total amount: </b><span id="mtotalb"></span></td>
+				<td></td>
+			</tr>
+			</tbody>
+			</table>
+			<button type="button" class="btn btn-primary" id="checkout-button-2"
+				role="link">Buy</button>
+			<button type="button" id="btnClearB" class="btn btn-light">Clear</button>
+			<!-- <button type="button" id="btnTest" class="btn btn-light">Test</button> -->
+			<div id="error-message"></div>
+
+			</div>
+			<div class="image">
+				<img src="images/sap.jpg" alt="" />
+			</div>
+		</section>
+
+
 
 	<!-- Footer -->
 	<footer class="wrapper style1 align-center">
@@ -116,64 +187,124 @@
 	<script>
 		$("input[type='number']").inputSpinner();
 
-		var $fees = $("input[type='number']").change(function () {
+		var $fees = $(".numbera").change(function () { // input[type='number']
 			var total = 0;
 			//iterate through all the fee elements and find the total
 			$fees.each(function () {
-				var input = this.value;
+				var input = this.value; 				// console.log("Declared: "+input);
 				if ($(this).attr("id") == "input1") {
-					input *= 10;
+					input *= 10; 					// console.log("Reg: "+ input);
 				}
 				else if ($(this).attr("id") == "input2") {
-					input *= 8.5;
+					input *= 8.5; 					// console.log("Stu: "+ input);
 				}
-				else {
-					input *= 8;
+				else if ($(this).attr("id") == "input3"){
+					input *= 8;					// console.log("Gro: "+ input);
 				}
-				total += (parseFloat($.trim(input)) || 0)
+				else{
+					return;
+				}
+				total += (parseFloat($.trim(input)) || 0);				// console.log("Tot: "+ total);
 			})
-			$("#mtotal").text(total.toFixed(2)+ '€');
+			$("#mtotal").text(total.toFixed(2) + '€');
 		});
 
-		$('#btnClear').click(function(){	
-			/*alert("Your book is overdue.");	*//*To check it enters (it does)*/
-			/*Clear all input type="text" box*/
-			$(".number").val('');
-			/*Clear textarea using id */
-			$( "#mtotal" ).text('');
-								
+
+		var $feesB = $(".numberb").change(function () {
+			var totalB = 0;
+			//iterate through all the fee elements and find the total
+			$feesB.each(function () {
+				var inputB = this.value;
+				if ($(this).attr("id") == "input1b") {
+					inputB *= 10;
+				}
+				else if ($(this).attr("id") == "input2b") {
+					inputB *= 8.5;
+				}
+				else if ($(this).attr("id") == "input3b"){
+					inputB *= 8;
+				}
+				else{
+					return;
+				}
+				totalB += (parseFloat($.trim(inputB)) || 0);
+			})
+			$("#mtotalb").text(totalB.toFixed(2) + '€');
 		});
-		$('#btnTest').click(function(){	
+
+		 $('#btnClear, #btnClearB').click(function () {
+		//$('.btn-light').click(function () { //ALT
+			// alert("Entered");
+			/*Clear all inputs with class number*/
+			$(".numbera").val('');
+			$(".numberb").val('');
+			/*Clear textarea using id */
+			$("#mtotal").text('');
+			$("#mtotalb").text('');
+		});
+		//Uncomment this and button above to test values
+		// $('#btnTest').click(function () {
+		// 	var regular = parseInt($('#input1b').val()); //ALT: document.getElementById('input1').value 
+		// 	var student = parseInt($('#input2b').val());
+		// 	var group = parseInt($('#input3b').val());
+		// 	alert(regular + " " + typeof regular + " " + student + " " + typeof student + " " + group + " " + typeof group + "\n" + !isNaN(regular) + " " + !isNaN(student) + " " + !isNaN(group));
+		// 	//NaN number NaN number 7 number 
+		// 	//true true true
+		// });
+	</script>
+	<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
+
+	<script>
+		//Production
+		var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
+		var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
+		checkoutButton.addEventListener('click', function () {
+			var items = [];
 			var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
 			var student = parseInt($('#input2').val());
-			var group   = parseInt($('#input3').val());
-			alert(regular +" "+typeof regular+ " " + student+" "+typeof student+ " " + group + " " + typeof group +"\n" + !isNaN(regular) + " " + !isNaN(student) + " " + !isNaN(group)); 
-	      //NaN number NaN number 7 number 
-    	  //true true true
-		});
-	</script>
-		<!-- JSFiddle of 3 inputs getting an output: http://jsfiddle.net/pjdkyxft/1/ -->
+			var group = parseInt($('#input3').val());
 
-<script>
-	//Production
-	var stripe = Stripe('pk_live_4wZpMWikdmOFg6OZnSsF1zn7');
-	var checkoutButton = document.getElementById('checkout-button-sku_Fe5t80kf4TpxOv');
-	checkoutButton.addEventListener('click', function () {
+			if (!isNaN(regular)) {
+				items.push({ sku: 'sku_Fe5t80kf4TpxOv', quantity: regular });
+			}
+			if (!isNaN(student)) {
+				items.push({ sku: 'sku_Fe6S60Vz0kU0YV', quantity: student });
+			}
+			if (!isNaN(group)) {
+				items.push({ sku: 'sku_Fe6TRh1LD7I6op', quantity: group });
+			}
+
+			stripe.redirectToCheckout({
+				items,
+				successUrl: 'https://joanvalis.github.io/braindead/success.html',
+				cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
+			})
+				.then(function (result) {
+					if (result.error) {
+						var displayError = document.getElementById('error-message');
+						displayError.textContent = result.error.message;
+					}
+				});
+		}, { passive: true });
+
+	//Testing
+	// var stripeTest = Stripe('pk_test_y9SWrPjd9ormdQk4EmIMZHX8');
+	var checkoutButtonB = document.getElementById('checkout-button-2');
+	checkoutButtonB.addEventListener('click', function () {
 		var items = [];
-		var regular = parseInt($('#input1').val()); //ALT: document.getElementById('input1').value 
-		var student = parseInt($('#input2').val());
-		var group   = parseInt($('#input3').val());
-
+		var regular = parseInt($('#input1b').val()); //ALT: document.getElementById('input1').value 
+		var student = parseInt($('#input2b').val());
+		var group   = parseInt($('#input3b').val());
+		//Testing
 		if (!isNaN(regular)){
-			items.push({sku: 'sku_Fe5t80kf4TpxOv', quantity: regular});
+			items.push({sku: 'sku_FfWxcCwYxdYq4l', quantity: regular});
 		}
 		if(!isNaN(student)){
-			items.push({sku: 'sku_Fe6S60Vz0kU0YV', quantity: student});
+			items.push({sku: 'sku_FfWyIJGiz1CQ10', quantity: student});
 		}
 		if(!isNaN(group)){
-			items.push({sku: 'sku_Fe6TRh1LD7I6op', quantity: group});
+			items.push({sku: 'sku_FfWy9O4I830lql', quantity: group});
 		}
-		
 		stripe.redirectToCheckout({
 			items,
 			successUrl: 'https://joanvalis.github.io/braindead/success.html',
@@ -187,15 +318,7 @@
 		});
 	}, { passive: true });
 
-// 	//Testing
-// 	var stripeTest = Stripe('pk_test_y9SWrPjd9ormdQk4EmIMZHX8');
-// 	var checkoutButton = document.getElementById('checkout-button-sapiano');
-// 	checkoutButton.addEventListener('click', function () {
-// 		var items = [];
-// 		var regular = parseInt($('#input1b').val()); //ALT: document.getElementById('input1').value 
-// 		var student = parseInt($('#input2b').val());
-// 		var group   = parseInt($('#input3b').val());
-// 		//Testing
+	//Testing
 // 		if (!isNaN(regular)){
 // 			items.push({sku: 'sku_F7qaiXVy2h0tBs', quantity: regular});
 // 		}
@@ -205,24 +328,6 @@
 // 		if(!isNaN(group)){
 // 			items.push({sku: 'sku_Ff0Kkaf4hYkKYo', quantity: group});
 // 		}
-// 		stripeTest.redirectToCheckout({
-// //Production
-// 		// items: [{sku: 'sku_Fe5t80kf4TpxOv', quantity: 2}, 
-// 		// 		{sku: 'sku_Fe6S60Vz0kU0YV', quantity: 2},
-// 		// 		{sku: 'sku_Fe6TRh1LD7I6op', quantity: 5}],
-// //Testing
-// 		items,
-// 		successUrl: 'https://joanvalis.github.io/braindead/success.html',
-// 		cancelUrl: 'https://joanvalis.github.io/braindead/canceled.html',
-// 		})
-// 		.then(function (result) {
-// 		if (result.error) {			
-// 			var displayError = document.getElementById('error-message');
-// 			displayError.textContent = result.error.message;
-// 		}
-// 		});
-// 	}, { passive: true });
 	</script>
 </body>
-
 </html>
